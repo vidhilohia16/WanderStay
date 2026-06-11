@@ -104,7 +104,7 @@ app.get("/listings",async (req,res)=>{
     let listings=await Listings.find();
     res.render("listings.ejs",{listings});
 });
-app.get("/home",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render("home.ejs");
 });
 app.get("/signup",(req,res)=>{
@@ -122,7 +122,7 @@ app.post("/login", passport.authenticate("local", {
 });
 
 // Add this back, with the fix applied
-app.post("/home", async (req, res, next) => {
+app.post("/", async (req, res, next) => {
     try {
         let { username, email, password } = req.body;
         const newUser = new User({ email, username });

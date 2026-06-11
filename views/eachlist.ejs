@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reserve - <%= buylist.title %></title>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+ body { font-family: 'Segoe UI', sans-serif; background: #f7f7f7; color: #222; }
+
+.hero-image {
+  width: 100%;
+    max-width: 1000px;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+    margin: 24px auto 0;
+    border-radius: 16px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.listing-info { flex: 1; }
+.listing-info h1 { font-size: 26px; margin-bottom: 8px; }
+.listing-info p { color: #717171; font-size: 14px; }
+
+.booking-card {
+    width: 360px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 40px;
+}
+
+    .booking-card h2 { font-size: 20px; margin-bottom: 4px; }
+    .per-night { font-size: 14px; color: #717171; margin-bottom: 20px; }
+
+    .date-row {
+      display: flex; border: 1px solid #b0b0b0;
+      border-radius: 10px; overflow: hidden; margin-bottom: 12px;
+    }
+
+    .date-field { flex: 1; padding: 10px 12px; }
+    .date-field:first-child { border-right: 1px solid #b0b0b0; }
+
+    .date-field label {
+      display: block; font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: #717171; margin-bottom: 4px;
+    }
+
+    .date-field input[type="date"] {
+      border: none; outline: none; font-size: 14px;
+      width: 100%; cursor: pointer; background: transparent;
+    }
+
+    .guests-field {
+      border: 1px solid #b0b0b0; border-radius: 10px;
+      padding: 10px 12px; margin-bottom: 16px;
+    }
+
+    .guests-field label {
+      display: block; font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      color: #717171; margin-bottom: 4px;
+    }
+
+    .guests-field select {
+      border: none; outline: none; font-size: 14px;
+      width: 100%; background: transparent; cursor: pointer;
+    }
+
+    .error-msg {
+      color: #e61e4d; font-size: 12px;
+      margin-bottom: 10px; display: none;
+    }
+
+    .price-breakdown {
+      margin-top: 16px; border-top: 1px solid #eee;
+      padding-top: 16px; display: none;
+    }
+
+    .price-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; margin-bottom: 10px; color: #444;
+    }
+
+    .price-row.total {
+      font-weight: 700; font-size: 15px; color: #222;
+      border-top: 1px solid #eee; padding-top: 12px; margin-top: 4px;
+    }
+
+    #reserveBtn {
+      width: 100%; margin-top: 16px; padding: 14px;
+      background: linear-gradient(to right, #e61e4d, #d70466);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 16px; font-weight: 600; cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    #reserveBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+    #reserveBtn:hover:not(:disabled) { opacity: 0.9; }
+
+    #successModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); justify-content: center;
+      align-items: center; z-index: 999;
+    }
+    #successModal.show { display: flex; }
+
+    .modal-box {
+      background: #fff; border-radius: 20px; padding: 40px;
+      text-align: center; max-width: 360px; width: 90%;
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-box .checkmark { font-size: 56px; margin-bottom: 16px; }
+    .modal-box h2 { font-size: 22px; margin-bottom: 8px; }
+    .modal-box p { color: #717171; font-size: 14px; margin-bottom: 6px; }
+    .modal-box .pid { font-size: 11px; color: #bbb; word-break: break-all; margin: 10px 0 24px; }
+    .modal-box button {
+      padding: 12px 28px; background: #222; color: #fff;
+      border: none; border-radius: 10px; font-size: 14px; cursor: pointer;
+    }
+    .rn {
+    position: relative;
+    
+}
+
+.rn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: black !important;
+    transition: width 0.3s ease;
+}
+
+.rn:hover::after {
+    width: 100%;
+}
+  </style>
+  
+</head>
+<body>
+    <div class="nav" style="margin-bottom: 50px;">
+    <div class="leftnav">
+        <a href="/home"><h1 style="color: #ec2c62; font-weight: 700; letter-spacing: -0.5px;">WanderStay</h1></a>
+    </div>
+    <div class="rightnav">
+        <div class="rn"><a href="/listings"><h4 style="color: black;">Listings</h4></a></div>
+        <div class="rn"><a href="/host"><h4 style="color: black;">Host</h4></a></div>
+        <div class="rn"><a href="#contact"><h4 style="color: black;">Contact</h4></a></div>
+        <div class="rn"><a href="/login"><h4 style="color: black;">Login</h4></a></div>
+        <div class="rn"><a href="/signup"><h4 style="color: black;">Signup</h4></a></div>
+    </div>
+</div>
+<hr style="margin: 0; border: none; border-top: 1px solid #ebebeb;">
+
+<img class="hero-image" src="<%= buylist.image || 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800' %>" alt="<%= buylist.title %>" />
+<div class="container">
+
+  <!-- Listing Info -->
+  <div class="listing-info">
+    <h1><%= buylist.title %></h1>
+    <p style="font-size:18px">📍 <%= buylist.location %>, <%= buylist.country %></p>
+    <p style="margin-top:8px; font-size:18px; font-weight:600; color:#222;">
+      ₹<%= buylist.price %> <span style="font-weight:400; font-size:14px;">/ night</span>
+    </p>
+    <p style="margin-top:10px; line-height:1.6; font-size:18px;"><%= buylist.description %></p>
+  </div>
+
+  <!-- Booking Card -->
+  <div class="booking-card">
+    <h2>₹<%= buylist.price %></h2>
+    <p class="per-night">per night</p>
+
+    <!-- Date Pickers -->
+    <div class="date-row">
+      <div class="date-field">
+        <label>Check-in</label>
+        <input type="date" id="checkIn" />
+      </div>
+      <div class="date-field">
+        <label>Check-out</label>
+        <input type="date" id="checkOut" />
+      </div>
+    </div>
+
+    <!-- Error message -->
+    <p class="error-msg" id="errorMsg">⚠️ Check-out must be after check-in</p>
+
+    <!-- Guests -->
+    <div class="guests-field">
+      <label>Guests</label>
+      <select id="guests">
+        <option>1 guest</option>
+        <option>2 guests</option>
+        <option>3 guests</option>
+        <option>4 guests</option>
+      </select>
+    </div>
+
+    <!-- Price Breakdown -->
+    <div class="price-breakdown" id="priceBreakdown">
+      <div class="price-row">
+        <span id="nightsLabel">-</span>
+        <span id="nightsCost">-</span>
+      </div>
+      <div class="price-row">
+        <span>Cleaning fee</span>
+        <span>₹500</span>
+      </div>
+      <div class="price-row">
+        <span>Service fee (15%)</span>
+        <span id="serviceFee">-</span>
+      </div>
+      <div class="price-row total">
+        <span>Total</span>
+        <span id="totalDisplay">-</span>
+      </div>
+    </div>
+
+    <button id="reserveBtn" disabled>Select dates to reserve</button>
+  </div>
+
+</div>
+
+<!-- Success Modal -->
+<div id="successModal">
+  <div class="modal-box">
+    <div class="checkmark">🎉</div>
+    <h2>Booking Confirmed!</h2>
+    <p>Your stay at <strong><%= buylist.title %></strong> is reserved.</p>
+    <p id="bookingDates"></p>
+    <p class="pid" id="paymentIdText"></p>
+    <button onclick="window.location.href='/listings'">Browse More Listings</button>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="/script.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  const PRICE_PER_NIGHT = "<%= buylist.price %>";
+  const LISTING_ID      = "<%= buylist._id %>";
+  const LISTING_TITLE   = "<%= buylist.title %>";
+  const RAZORPAY_KEY    = "<%= razorpayKey %>";
+  const CLEANING_FEE    = 500;
+
+  const checkInEl  = document.getElementById("checkIn");
+  const checkOutEl = document.getElementById("checkOut");
+  const reserveBtn = document.getElementById("reserveBtn");
+  const breakdown  = document.getElementById("priceBreakdown");
+  const errorMsg   = document.getElementById("errorMsg");
+
+  // Set min date to today
+  const today = new Date().toISOString().split("T")[0];
+  checkInEl.min = today;
+  checkOutEl.min = today;
+
+  function updatePricing() {
+    const checkIn  = new Date(checkInEl.value);
+    const checkOut = new Date(checkOutEl.value);
+
+    // Reset
+    errorMsg.style.display = "none";
+    breakdown.style.display = "none";
+    reserveBtn.disabled = true;
+    reserveBtn.textContent = "Select dates to reserve";
+
+    if (!checkInEl.value || !checkOutEl.value) return;
+
+    // Validation — checkout must be after checkin
+    if (checkOut <= checkIn) {
+      errorMsg.style.display = "block";
+      return;
+    }
+
+    // Must be at least 1 night
+    const nights = Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+    if (nights < 1) {
+      errorMsg.textContent = "⚠️ Minimum stay is 1 night";
+      errorMsg.style.display = "block";
+      return;
+    }
+
+    // Calculate
+    const nightsCost = nights * PRICE_PER_NIGHT;
+    const serviceFee = Math.round(nightsCost * 0.15);
+    const total      = nightsCost + CLEANING_FEE + serviceFee;
+
+    document.getElementById("nightsLabel").textContent  = `₹${PRICE_PER_NIGHT.toLocaleString()} × ${nights} night${nights > 1 ? "s" : ""}`;
+    document.getElementById("nightsCost").textContent   = `₹${nightsCost.toLocaleString()}`;
+    document.getElementById("serviceFee").textContent   = `₹${serviceFee.toLocaleString()}`;
+    document.getElementById("totalDisplay").textContent = `₹${total.toLocaleString()}`;
+
+    breakdown.style.display = "block";
+    reserveBtn.disabled = false;
+    reserveBtn.textContent = "Reserve";
+    reserveBtn.dataset.total = total;
+    reserveBtn.dataset.checkin = checkInEl.value;
+    reserveBtn.dataset.checkout = checkOutEl.value;
+  }
+
+  checkInEl.addEventListener("change", () => {
+    // Reset checkout if it's before new checkin
+    if (checkOutEl.value && checkOutEl.value <= checkInEl.value) {
+      checkOutEl.value = "";
+    }
+    checkOutEl.min = checkInEl.value;
+    updatePricing();
+  });
+
+  checkOutEl.addEventListener("change", updatePricing);
+
+  // Reserve button
+  document.getElementById("reserveBtn").addEventListener("click", async () => {
+    const btn         = document.getElementById("reserveBtn");
+    const checkIn     = btn.dataset.checkin;
+    const checkOut    = btn.dataset.checkout;
+    const totalAmount = parseInt(btn.dataset.total);
+
+    btn.disabled = true;
+    btn.textContent = "Processing...";
+
+    try {
+      const res = await fetch("/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ listingId: LISTING_ID, checkIn, checkOut, totalAmount }),
+      });
+
+      const { orderId, amount, currency } = await res.json();
+
+      const options = {
+        key: RAZORPAY_KEY,
+        amount, currency,
+        name: "Airbnb Clone",
+        description: LISTING_TITLE,
+        order_id: orderId,
+
+        handler: async function (response) {
+          const verifyRes = await fetch("/api/verify-payment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              razorpay_order_id:   response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature:  response.razorpay_signature,
+              bookingDetails: { listingId: LISTING_ID, checkIn, checkOut, totalAmount },
+            }),
+          });
+
+          const result = await verifyRes.json();
+          if (result.success) {
+            document.getElementById("bookingDates").textContent = `📅 ${checkIn} → ${checkOut}`;
+            document.getElementById("paymentIdText").textContent = "Payment ID: " + response.razorpay_payment_id;
+            document.getElementById("successModal").classList.add("show");
+          } else {
+            alert("Payment verification failed.");
+            btn.disabled = false;
+            btn.textContent = "Reserve";
+          }
+        },
+
+        theme: { color: "#e61e4d" },
+        modal: {
+          ondismiss: function () {
+            btn.disabled = false;
+            btn.textContent = "Reserve";
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on("payment.failed", function (response) {
+        alert("Payment failed: " + response.error.description);
+        btn.disabled = false;
+        btn.textContent = "Reserve";
+      });
+      rzp.open();
+
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong.");
+      btn.disabled = false;
+      btn.textContent = "Reserve";
+    }
+  });
+  
+</script>
+<%-include("includes/contact.ejs")%>
+</body>
+</html>

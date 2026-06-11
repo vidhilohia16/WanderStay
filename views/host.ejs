@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Listings – WanderStay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+   <style>
+    .rn {
+    position: relative;
+    
+}
+
+.rn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: black !important;
+    transition: width 0.3s ease;
+}
+
+.rn:hover::after {
+    width: 100%;
+}
+    body {
+        background-color: #ffffff;
+        color: #1a1a1a;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2.5rem 0 1.5rem;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 2rem;
+    }
+
+    .page-header h2 {
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+        color: #1a1a1a;
+    }
+
+    .page-header p {
+        color: #6c757d;
+        margin: 0;
+    }
+
+    /* New Listing button */
+    .btn-new-listing {
+        background: linear-gradient(135deg, #ec2c62, #ec2c62);
+        color: #fff !important;
+        border: none;
+        padding: 0.6rem 1.4rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        box-shadow: 0 0 16px rgb(228, 48, 78);
+        transition: box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-new-listing:hover {
+        box-shadow: 0 0 28px rgba(202, 32, 46, 0.7);
+        transform: translateY(-2px);
+    }
+
+    /* Card styles */
+    .listing-card {
+        border: 1px solid #e5e5e5;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        background: #ffffff;
+    }
+
+    .listing-card:hover {
+        box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+        transform: translateY(-3px);
+    }
+
+    .listing-card .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .listing-card .card-body {
+        padding: 1rem 1.2rem 0.5rem;
+    }
+
+    .listing-card .card-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+        color: #1a1a1a;
+    }
+
+    .listing-card .card-location {
+        color: #888;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .listing-card .card-price {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #1a1a1a;
+    }
+
+    .listing-card .card-price span {
+        font-weight: 400;
+        font-size: 0.85rem;
+        color: #888;
+    }
+
+    .listing-card .card-footer {
+        background: none;
+        border-top: 1px solid #f0f0f0;
+        padding: 0.75rem 1.2rem;
+        display: flex;
+        gap: 0.5rem;
+        overflow: visible; /* add this */
+    }
+
+    /* Edit button */
+    .btn-edit {
+        flex: 1;
+        background: transparent;
+        border: 1px solid #181bf2;
+        color: #1417e3 !important;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.85rem;
+        padding: 0.4rem 0;
+        text-align: center;
+        transition: background 0.2s, color 0.2s;
+    }
+    /* .listing-card .card-footer form {
+    flex: 1;
+    display: flex;
+} */
+
+.listing-card .card-footer form .btn-delete {
+    width: 100%;
+}
+
+    .btn-edit:hover {
+        background: #4a4de7;
+        color: #fff !important;
+    }
+
+    /* Delete button */
+    .btn-delete {
+        flex: 1;
+         min-width: 0; /* add this */
+    white-space: nowrap; /* add this */
+        background: transparent;
+        border: 1px solid #ef4444;
+        color: #ef4444 !important;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 0.85rem;
+        padding: 0.4rem 0;
+        text-align: center;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-delete:hover {
+        background: #ef4444;
+        color: #fff !important;
+    }
+
+    /* Empty state */
+    .empty-state {
+        text-align: center;
+        padding: 5rem 1rem;
+        color: #888;
+    }
+
+    .empty-state .empty-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .empty-state h4 {
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+        margin-bottom: 1.5rem;
+    }
+
+    .container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+</style>
+</head>
+
+
+<body>
+     <% if (locals.success && locals.success.length > 0) { %>
+    <div class="flash-msg">
+        ✓ <%= locals.success[0] %>
+    </div>
+<% } %>
+
+    <div class="nav" style="margin-bottom: 30px;">
+    <div class="leftnav">
+        <a href="/home"><h1 style="color: #ec2c62; font-weight: 700; letter-spacing: -0.5px;">WanderStay</h1></a>
+    </div>
+    <div class="rightnav">
+        <div class="rn"><a href="/listings"><h4 style="color: black;">Listings</h4></a></div>
+        <div class="rn"><a href="/host"><h4 style="color: black;">Host</h4></a></div>
+        
+        <div class="rn"><a href="/login"><h4 style="color: black;">Login</h4></a></div>
+        <div class="rn"><a href="/signup"><h4 style="color: black;">Signup</h4></a></div>
+    </div>
+</div>
+<hr style="margin: 0; border: none; border-top: 1px solid #ebebeb;">
+    <!-- <%- include("includes/header.ejs") %> -->
+
+    <div class="container" style="max-width: 1100px;">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h2>My Listings</h2>
+                <p>Manage your properties</p>
+            </div>
+            <a href="/newlisting" class="btn btn-new-listing">+ New Listing</a>
+        </div>
+
+        <% if (!listings || listings.length === 0) { %>
+            <div class="empty-state">
+                <div class="empty-icon">🏠</div>
+                <h4>No listings yet</h4>
+                <p>Start earning by listing your first property.</p>
+                <a href="/newlisting" class="btn btn-new-listing px-4">+ Create your first listing</a>
+            </div>
+        <% } else { %>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 pb-5">
+                <% for (let listing of listings) { %>
+                <div class="col">
+                    <div class="listing-card card h-100">
+                        <img src="<%= listing.image %>" class="card-img-top" alt="<%= listing.title %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= listing.title %></h5>
+                            <p class="card-location">📍 <%= listing.location %></p>
+                            <p class="card-price">₹<%= listing.price %> <span>/ night</span></p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/newlisting/<%= listing._id %>/edit" class="btn-edit">Edit
+</a>
+<form action="/newlisting/<%= listing._id %>?_method=DELETE" method="POST" style="flex:1;">
+    <button type="submit" class="btn-delete" style="width:100%;">Delete</button>
+</form>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        <% } %>
+
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+</html>

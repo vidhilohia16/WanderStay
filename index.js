@@ -7,7 +7,7 @@ const LocalStrategy=require("passport-local");
 const User=require("./model/user.js");
 const cookieParser=require("cookie-parser");
 const session=require("express-session");
-const MongoStore=require("connect-mongo")
+const MongoStore = require("connect-mongo").default;
 const flash=require("connect-flash");
 const path=require("path");
 const multer  = require('multer')
@@ -64,7 +64,7 @@ app.use(methodOverride(function (req, res) {
 }));
 
 const store=MongoStore.create({
-    mongoUrl:"mongodb+srv://vidhilohia16_db_user:rbzez2DNIc3DmqxZ@wanderstay.q5xmrng.mongodb.net/?appName=WanderStay",
+    mongoUrl:"mongodb+srv://vidhilohia16_db_user:rbzez2DNIc3DmqxZ@wanderstay.q5xmrng.mongodb.net/wanderstay?appName=WanderStay",
     crypto:{
         secret:"heheh",
     },

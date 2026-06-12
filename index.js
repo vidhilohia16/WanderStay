@@ -7,7 +7,7 @@ const LocalStrategy=require("passport-local");
 const User=require("./model/user.js");
 const cookieParser=require("cookie-parser");
 const session=require("express-session");
-const Mongostore=require("connect-mongo")
+const MongoStore=require("connect-mongo")
 const flash=require("connect-flash");
 const path=require("path");
 const multer  = require('multer')
@@ -63,7 +63,16 @@ app.use(methodOverride(function (req, res) {
     return req.query._method; // also check query string
 }));
 
-app.use(session({secret:"heheh",
+const store=MongoStore.create({
+    mongoUrl=process.env.MONGO_URL,
+    crypto:{
+        secret:"heheh",
+    },
+    touchAfter:24*3600,
+})
+app.use(session({
+    store,
+    secret:"heheh",
     resave:true,
     saveUninitialized:true,
     cookie:{
@@ -72,6 +81,7 @@ app.use(session({secret:"heheh",
         httpOnly:true,
     }
 }));
+
 
 app.use(flash());
 

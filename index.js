@@ -64,7 +64,7 @@ app.use(methodOverride(function (req, res) {
 }));
 
 const store=MongoStore.create({
-    mongoUrl:"mongodb+srv://vidhilohia16_db_user:rbzez2DNIc3DmqxZ@wanderstay.q5xmrng.mongodb.net/wanderstay?appName=WanderStay",
+    mongoUrl:process.env.MONGO_URL,
     crypto:{
         secret:"heheh",
     },

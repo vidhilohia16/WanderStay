@@ -1,12 +1,8 @@
 const mongoose=require("mongoose");
-async function main() {
-  await mongoose.connect(process.env.MONGO_URL);
-}
+
 const { v4: uuidv4 } = require("uuid");
 const Schema=mongoose.Schema;
-main()
-  .then(() => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
+
 const listingschema=new mongoose.Schema({
     title:{
         type:String,

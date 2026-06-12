@@ -1,13 +1,18 @@
-const mongoose=require("mongoose");
-const Listings=require("./model/listing.js");
+const mongoose = require("mongoose");
+const Listings = require("./model/listing.js");
+
 async function main() {
-  await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect("mongodb+srv://vidhilohia16_db_user:.R5EWKTSK2D9aca@wanderstay.q5xmrng.mongodb.net/wanderstay?appName=WanderStay");
+    console.log("Connected to DB");
+
+    await Listings.deleteMany({});
+    console.log("Cleared existing listings");
+
+    await Listings.insertMany(sampleListings);
+    console.log("Data inserted!");
+
+    mongoose.connection.close();
 }
-
-main()
-  .then(() => console.log("Connected to DB"))
-  .catch((err) => console.log(err));
-
 
 const sampleListings = [
   {
@@ -326,4 +331,6 @@ const sampleListings = [
     country: "Costa Rica",
   },
 ];
-Listings.insertMany(sampleListings);
+// ... sampleListings array above ...
+
+main().catch(console.error); // ✅ only this at the bottom

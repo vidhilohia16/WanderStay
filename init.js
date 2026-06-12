@@ -1,8 +1,10 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Listings = require("./model/listing.js");
 
+
 async function main() {
-    await mongoose.connect("mongodb+srv://vidhilohia16_db_user:.R5EWKTSK2D9aca@wanderstay.q5xmrng.mongodb.net/wanderstay?appName=WanderStay");
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("Connected to DB");
 
     await Listings.deleteMany({});

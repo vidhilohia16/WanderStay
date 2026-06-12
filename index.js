@@ -64,7 +64,7 @@ app.use(methodOverride(function (req, res) {
 }));
 
 const store=MongoStore.create({
-    mongoUrl=process.env.MONGO_URL,
+    mongoUrl:process.env.MONGO_URL,
     crypto:{
         secret:"heheh",
     },

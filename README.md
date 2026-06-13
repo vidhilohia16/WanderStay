@@ -11,18 +11,17 @@ end-to-end payment integration.
 
 ## ✨ Features
 
-- 🏠 Hosts can create, edit, and delete property listings
-- 🖼 Image uploads via Multer for property photos
-- 💳 End-to-end payment flow using Razorpay API with 
+-  Hosts can create, edit, and delete property listings
+-  Image uploads via Multer for property photos
+-  End-to-end payment flow using Razorpay API with 
   HMAC-SHA256 signature verification
-- 🔐 Authentication and authorization via Passport.js 
+-  Authentication and authorization via Passport.js 
   and Express Sessions
-- 👥 Role-based access control (host vs guest)
-- 🗄 MongoDB Atlas as cloud database
-- 🌐 RESTful APIs with full CRUD for listings and users
-- ✨ Smooth animations using GSAP
+-  Role-based access control (host vs guest)
+-  MongoDB Atlas as cloud database
+-  RESTful APIs with full CRUD for listings and users
 
----
+
 
 ## 🛠 Tech Stack
 

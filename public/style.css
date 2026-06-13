@@ -20,7 +20,7 @@ html::-webkit-scrollbar {
     list-style: none;
     display:block;
     background-color: rgb(37, 42, 62);
-    overflow: hidden;
+    
     margin-top: 0px;
     padding-left: 60px;
 }
@@ -554,6 +554,7 @@ a {
 
 
 .nav{
+    overflow: visible;
     display:flex;
     justify-content: space-between;
     align-items: center;

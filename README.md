@@ -36,15 +36,15 @@ end-to-end payment integration.
 
 ### Installation
 
-# Clone the repo
+## Clone the repo
 git clone https://github.com/vidhilohia16/WanderStay
 
-# Install dependencies
+## Install dependencies
 npm install
 
 ### Run Locally
 node index.js
-# or
+## or
 nodemon index.js
 
 

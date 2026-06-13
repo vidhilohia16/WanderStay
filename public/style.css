@@ -648,14 +648,15 @@ a {
 
 @media (max-width: 768px) {
     .rightnav {
-        gap: 16px; /* was 90px */
+        gap: 17px; /* was 90px */
     }
     .nav {
+        margin-top: 5px;
         margin-left: 4%;
         margin-right: 4%;
     }
     .rn h4 {
-        font-size: 14px; /* was 20px */
+        font-size: 15px; /* was 20px */
     }
     .leftnav h1 {
         font-size: 18px; /* was 25px */

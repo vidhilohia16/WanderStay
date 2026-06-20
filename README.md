@@ -1,15 +1,15 @@
-# 🏡 WanderStay — Accommodation Booking Platform
+#  WanderStay — Accommodation Booking Platform
 
 A full-stack Airbnb-inspired web application where hosts can list 
 properties and guests can explore and book accommodations with 
 end-to-end payment integration.
 
-🔗 Live: https://wanderstay-3tb5.onrender.com
-🎥 Demo: [Watch here](https://www.dropbox.com/scl/fi/1tyyxun7ywk2n2bed7bef/WanderStay-Full-Stack-Accomodation-Booking-Platform.mp4?rlkey=48ejvn66do9qedz339ph2gqyu&st=1qw2b786&dl=0)
+ Live: https://wanderstay-3tb5.onrender.com
+ Demo: [Watch here](https://www.dropbox.com/scl/fi/1tyyxun7ywk2n2bed7bef/WanderStay-Full-Stack-Accomodation-Booking-Platform.mp4?rlkey=48ejvn66do9qedz339ph2gqyu&st=1qw2b786&dl=0)
 
 
 
-## ✨ Features
+##  Features
 
 -  Hosts can create, edit, and delete property listings
 -  Image uploads via Multer for property photos
@@ -23,32 +23,12 @@ end-to-end payment integration.
 
 
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 |      Frontend        |        Backend      | Database |    Tools    |
 
 | EJS, Bootstrap, GSAP | Node.js, Express.js | MongoDB | Razorpay API,Passport.js |
 
 
-
-
-## 🚀 Getting Started
-
-### Installation
-
-## Clone the repo
-git clone https://github.com/vidhilohia16/WanderStay
-
-## Install dependencies
-npm install
-
-### Run Locally
-node index.js
-## or
-nodemon index.js
-
-
-
-## 👩‍💻 Author
 Vidhi Lohia
 [LinkedIn](https://www.linkedin.com/in/vidhi-lohia1/) | [GitHub](https://github.com/vidhilohia16)
